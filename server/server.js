@@ -28,6 +28,12 @@ app.use('/graphql', expressGraphQL({
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('../webpack.config.js');
+const historyApiFallback = require("connect-history-api-fallback");
+app.use(
+  historyApiFallback({
+    verbose: false
+  })
+);
 app.use(webpackMiddleware(webpack(webpackConfig)));
 
 module.exports = app;
